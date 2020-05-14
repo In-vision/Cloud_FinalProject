@@ -22,6 +22,16 @@ Amplify.configure({
     }
 });
 
+export function SetS3Config(bucket, level){
+   Storage.configure({
+        bucket: bucket,
+        region: config.s3.REGION,
+        level: level,
+        identityPoolId: "us-east-1:eac621f2-c9ce-4bca-aaee-efe1d79ca5bb"
+    })
+}
+
+
 ReactDOM.render(<App />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

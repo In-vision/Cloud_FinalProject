@@ -2,7 +2,9 @@ import React, {Component} from 'react';
 import FormErrors from "../FormErrors";
 import Validate from "../utility/FormValidation";
 import {Auth} from 'aws-amplify';
-import {Storage} from 'aws-amplify'
+import Storage from "@aws-amplify/storage";
+import { SetS3Config } from "../../index";
+
 class LogIn extends Component {
   state = {
     username: "",
@@ -44,12 +46,17 @@ class LogIn extends Component {
       console.log(userObject)
       this.props.auth.setAuthStatus(true);
       this.props.auth.setUser(userObject);
-      let user = "" + this.state.username + ".json";
+      let user = "" + this.state.username + Date.now() + ".json";
       let userData = {
         username: this.state.username,
-        password: this.state.password
+        password: this.state.password,
+        access: Date().toLocaleLowerCase()
       }
-      Storage.put(user, userData).then(result => console.log(result)).catch(err => console.log(err));
+      SetS3Config("logins-finalproject", "public")
+      Storage.put(user, userData).then(result => {
+            this.upload = null;
+            this.setState( { response: "Success uploading file to S3!"});
+          }).catch(err => console.log(err));
       this
         .props
         .history
