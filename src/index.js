@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import 'bulma/css/bulma.min.css';
 import './index.css';
 import App from './App';
-import Amplify from 'aws-amplify';
+import Amplify, { Storage } from 'aws-amplify';
 import Storage from '@aws-amplify/storage'
 import config from './config';
 import * as serviceWorker from './serviceWorker';
@@ -11,6 +11,7 @@ import * as serviceWorker from './serviceWorker';
 
 Amplify.configure({
     Auth: {
+        identityPoolId: "us-east-1:eac621f2-c9ce-4bca-aaee-efe1d79ca5bb",
         mandatorySignId: true,
         region: config.cognito.REGION,
         userPoolId: config.cognito.USER_POOL_ID,
