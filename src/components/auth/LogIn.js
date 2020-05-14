@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import FormErrors from "../FormErrors";
 import Validate from "../utility/FormValidation";
 import {Auth} from 'aws-amplify';
-
+import {Storage} from 'aws-amplify'
 class LogIn extends Component {
   state = {
     username: "",
@@ -44,6 +44,12 @@ class LogIn extends Component {
       console.log(userObject)
       this.props.auth.setAuthStatus(true);
       this.props.auth.setUser(userObject);
+      let user = "" + this.state.username + ".json";
+      let userData = {
+        username: this.state.username,
+        password: this.state.password
+      }
+      Storage.put(user, userData).then(result => console.log(result)).catch(err => console.log(err));
       this
         .props
         .history

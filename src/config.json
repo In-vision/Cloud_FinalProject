@@ -6,5 +6,9 @@
     "REGION": "us-east-1",
     "USER_POOL_ID": "us-east-1_F0TJfYeom",
     "APP_CLIENT_ID": "5pgq5qvum00mpd0k91vsu5ffff"
+  } ,
+  "s3": {
+    "REGION": "us-east-1",
+    "BUCKET_NAME": "logins-finalproject"
   }
 }
