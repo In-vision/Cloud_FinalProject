@@ -4,7 +4,6 @@ import 'bulma/css/bulma.min.css';
 import './index.css';
 import App from './App';
 import Amplify, { Storage } from 'aws-amplify';
-import Storage from '@aws-amplify/storage'
 import config from './config';
 import * as serviceWorker from './serviceWorker';
 
